@@ -7,11 +7,19 @@ namespace ViewComponents.Models
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public IEnumerable<Category> Categories => throw new NotImplementedException();
+
+        private List<Category> _categories = new List<Category>() 
+        { 
+            new Category(){CategoryId=1,CategoryName="Telefon"},
+            new Category(){CategoryId=2,CategoryName="Bilgisayar"},
+            new Category(){CategoryId=3,CategoryName="Tablet"}
+        };
+
+        public IEnumerable<Category> Categories => _categories;
 
         public void AddCategory(Category entity)
         {
-            throw new NotImplementedException();
+            _categories.Add(entity);
         }
     }
 }

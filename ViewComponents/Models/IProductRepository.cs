@@ -8,6 +8,6 @@ namespace ViewComponents.Models
     public interface IProductRepository
     {
         IEnumerable<Product> Products { get; }
-        void AddProduct(Category entity);
+        void AddProduct(Product entity);
     }
 }
