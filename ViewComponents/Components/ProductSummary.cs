@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,10 @@ namespace ViewComponents.Components
             productRepository = _productRepository;
         }
 
-        public string Invoke()
+        public IViewComponentResult Invoke()
         {
-            return $"{productRepository.Products.Count()} ürünün toplam fiyatı : {productRepository.Products.Sum(i => i.Price)} TL";
+            return new HtmlContentViewComponentResult(
+            new HtmlString($"<strong>{productRepository.Products.Count()} </strong>ürünün toplam fiyatı : <span class='text-danger'>{productRepository.Products.Sum(i => i.Price)} </span> TL"));
         }
     }
 }
