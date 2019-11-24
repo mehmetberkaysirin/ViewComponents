@@ -18,10 +18,22 @@ namespace ViewComponents.Components
             productRepository = _productRepository;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(bool isApproved)
         {
-            return new HtmlContentViewComponentResult(
-            new HtmlString($"<strong>{productRepository.Products.Count()} </strong>ürünün toplam fiyatı : <span class='text-danger'>{productRepository.Products.Sum(i => i.Price)} </span> TL"));
+            if (true)
+            {
+
+            }
+
+
+            return View(new ProductSummaryViewModel()
+            {
+                Count = productRepository.Products.Where(i=>i.IsApproved==isApproved).Count(),
+                totalCount=productRepository.Products.Sum(i=>i.Price)
+
+            }); 
+                
+
         }
     }
 }
