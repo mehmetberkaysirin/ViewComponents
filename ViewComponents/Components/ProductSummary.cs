@@ -20,13 +20,18 @@ namespace ViewComponents.Components
 
         public IViewComponentResult Invoke(bool isApproved)
         {
-            if (true)
+            var viewName = "";
+            if (isApproved)
             {
-
+                viewName = "GreenCard";
+            }
+            else
+            {
+                viewName = "RedsCard";
             }
 
 
-            return View(new ProductSummaryViewModel()
+            return View(viewName,new ProductSummaryViewModel()
             {
                 Count = productRepository.Products.Where(i=>i.IsApproved==isApproved).Count(),
                 totalCount=productRepository.Products.Sum(i=>i.Price)
